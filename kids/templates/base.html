@@ -14,21 +14,30 @@
 </head>
 
 <body>
-<!--<nav class="navbar navbar-light" style="background-color: #e3f2fd;">-->
+
+
 <nav class="navbar navbar-expand-lg navbar-light bg-light" >
-  <div class="container-fluid">
-    <a class="navbar-brand" href="#">Start</a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
+    <div class="container-fluid">
+        <a class="navbar-brand" href="#">Start</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
     <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+
+
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+
+        <li class="nav-item">
+          <a class="nav-link active" href="{% url 'index_kidsachieve_url' %}">Kids achievements</a>
+        </li>
+
+
         <li class="nav-item">
           <a class="nav-link active" aria-current="page" href="{% url 'posts_list_url' %}">Blog</a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Link</a>
-        </li>
+
+
+
         <li class="nav-item">
           <a class="nav-link disabled">Disabled</a>
         </li>
@@ -41,11 +50,12 @@
   </div>
 </nav>
 
-
+{% block before_content %}
+{% endblock %}
 
 <div class="container mt-5">
     <div class="raw">
-        <div class="col-3 offset-md-2">
+        <div class="col-5 offset-md-2">
             {% block content %}
 
             {% endblock %}

@@ -1,0 +1,28 @@
+{% extends "kidsachieve/base_kidsachieve.html" %}
+
+
+
+{% block title %}
+    Kids achievement
+{% endblock %}
+
+
+{% block before_content %}
+
+<a href="{% url 'child_create_url' %}">Child create</a>
+<a href="{% url 'work_create_url' %}">Work create</a>
+<a href="{% url 'achievement_create_url' %}">Achievement create</a>
+
+{% endblock %}
+
+{% block content %}
+<h1> There are children: </h1>
+
+{% for child in children %}
+{{ child.first_name }}
+{% endfor %}
+
+
+{% endblock %}
+
+
