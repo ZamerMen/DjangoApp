@@ -1,15 +1,14 @@
 {% extends 'kidsachieve/base_kidsachieve.html' %}
 
 {% block title %}
-{{ head_title }}
+
 {% endblock %}
 
 
 
 {% block content %}
 
-{{ head_title }}
-<form action="{% url 'child_create_url' %}" method="post">
+<form action="{% url 'achievement_create_url'%}" method="post">
       {% csrf_token %}
 
     {% for field in form %}
@@ -26,7 +25,11 @@
     </div>
 
     {% endfor %}
+<select>
+    <option>1</option>
+    <option>2</option>
 
+</select>
     <button type="submit" class="btn btn-primary">create</button>
 </form>
 

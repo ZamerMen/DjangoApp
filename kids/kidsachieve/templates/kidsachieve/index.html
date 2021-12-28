@@ -16,12 +16,18 @@
 {% endblock %}
 
 {% block content %}
+
 <h1> There are children: </h1>
 
 {% for child in children %}
-{{ child.first_name }}
+<p> {{ child.first_name }} aka {{child.nick_name}} </p>
 {% endfor %}
 
+<h1> There are works: </h1>
+
+{% for work in works %}
+<p> {{ work.title }} </p>
+{% endfor %}
 
 {% endblock %}
 
