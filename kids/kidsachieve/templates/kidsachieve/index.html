@@ -20,7 +20,9 @@
 <h1> There are children: </h1>
 
 {% for child in children %}
+<a href="{% url 'child_achievements_list_url' nick_name=child.nick_name %}">
 <p> {{ child.first_name }} aka {{child.nick_name}} </p>
+</a>
 {% endfor %}
 
 <h1> There are works: </h1>

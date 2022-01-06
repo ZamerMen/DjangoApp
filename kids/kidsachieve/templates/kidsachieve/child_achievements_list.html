@@ -1,0 +1,45 @@
+{% extends 'kidsachieve/base_kidsachieve.html' %}
+
+
+
+{% block title %}
+Achievements list of {{ child.first_name }}
+{% endblock %}
+
+
+
+{% block table %}
+
+<style>
+    table {
+        border-collapse: collapse;
+        width: 100%;
+    }
+    th, td {
+        border: 1px solid black;
+
+    }
+</style>
+
+<h3>List of achievements {{ child.first_name }} aka {{child.nick_name}} </h3>
+
+    <table>
+            <tr>
+                <td> data <td/>
+                <td> work <td/>
+                <td> comments <td/>
+                <td> points <td/>
+                <td> correct points <td/>
+            </tr>
+        {% for work in works %}
+            <tr>
+                <td>{{ work.date_done }}<td/>
+                <td>{{ work.work_title}}<td/>
+                <td>({{ work.comments }})<td/>
+                <td>{{ work.work_title.points }}<td/>
+                <td>({{ work.correct_point }})<td/>
+            </tr>
+        {% endfor %}
+    </table>
+
+{% endblock %}

@@ -29,7 +29,7 @@ class WorkForm(forms.ModelForm):
 
         widgets = {
             'title': forms.TextInput(attrs={'class': 'form-control'}),
-            'points': forms.TextInput(attrs={'class': 'form-control'}),
+            'points': forms.NumberInput(attrs={'class': 'form-control'}),
             'comments': forms.TextInput(attrs={'class': 'form-control'})
         }
 
@@ -42,21 +42,36 @@ class WorkForm(forms.ModelForm):
         return new_obj
 
 
-class AchieveListForm(forms.Form):
-    choice_child = [(x.id, x.nick_name) for x in Child.objects.all()]
-    choice_work = [(x.id, x.title) for x in Work.objects.all()]
+class AchieveListForm(forms.ModelForm):
 
-    child_id = forms.CharField(widget=forms.Select(choices=choice_child))
-    work_id = forms.CharField(widget=forms.Select(choices=choice_work))
+    class Meta:
+        model = AchieveList
+        fields = ['child_nick', 'work_title', 'comments', 'correct_point']
+
+        widgets = {
+            'child_nick': forms.Select(attrs={'class': 'form-control'}),
+            'work_title': forms.Select(attrs={'class': 'form-control'}),
+            'comments': forms.TextInput(attrs={'class': 'form-control'}),
+            'correct_point': forms.NumberInput(attrs={'class': 'form-control'})
+        }
 
 
-
-    def save(self):
-        print(self.cleaned_data)
-
-        Child.
-        new_obj = AchieveList.objects.create(
-           child_id=child_id.set(self.cleaned_data['child_id'],)
-           work_id=self.cleaned_data['work_id']
-        )
-        return new_obj
+# class AchieveListForm(forms.Form):
+#     choice_child = [(x.nick_name, x.nick_name) for x in Child.objects.all()]
+#     choice_work = [(x.title, x.title) for x in Work.objects.all()]
+#
+#     child_nick = forms.CharField(widget=forms.Select(choices=choice_child))
+#     work_title = forms.CharField(widget=forms.Select(choices=choice_work))
+#
+#     comments = forms.CharField(max_length=50, widget=forms.TextInput(attrs={'class': 'form-control'}))
+#     correct_point = forms.IntegerField(widget=forms.NumberInput(attrs={'class': 'form-control'}))
+    # def save(self):
+    #
+    #     new_obj = AchieveList.objects.create(
+    #         child_nick=Child.objects.get(nick_name=self.cleaned_data['child_nick']),
+    #         work_title=Work.objects.get(work_title=self.cleaned_data['work_title']),
+    #         # work_title=self.cleaned_data['work_title'],
+    #         comments=self.cleaned_data['comments'],
+    #         correct_point=self.cleaned_data['correct_point']
+    #     )
+    #     return new_obj

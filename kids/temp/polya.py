@@ -1,6 +1,4 @@
-c = [
-    ['ME', '1'],
-    ['YOU', '2'],
-    ['WE', '3'],
-]
-print(type(c))
+f = [1,2,3]
+a=f*1
+print(id(f) ,id(a))
+print(f ,a)

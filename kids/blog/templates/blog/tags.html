@@ -9,7 +9,9 @@ Tags {{ block.super }}
 {% block content_noblog %}
 <h1> Tags: </h1>
     {% for tag in tags%}
+    <h2 p>
        <a href="{{ tag.get_absolute_url }}"> {{ tag.title }} </a>
+    </h2>
     {% endfor %}
 
 {% endblock %}

@@ -8,23 +8,24 @@ class Child(models.Model):
     age = models.IntegerField()
 
     def __str__(self):
-        return f'child {self.first_name} {self.nick_name}'
+        return f'child - {self.first_name} {self.nick_name}'
 
 
 class Work(models.Model):
     title = models.CharField(max_length=50, unique=True)
-    points = models.IntegerField()
+    points = models.IntegerField(default=10)
     comments = models.CharField(max_length=150, blank=True)
 
     def __str__(self):
-        return f'work: {self.title}'
+        return f'work - {self.title}'
 
 
 class AchieveList(models.Model):
-    child_id = models.ManyToManyField('Child', related_name='achievement')
-    work_id = models.ManyToManyField('Work', related_name='work')
+    child_nick = models.ForeignKey(Child, on_delete=models.CASCADE, null=True)
+    work_title = models.ForeignKey(Work, on_delete=models.CASCADE, null=True)
+    comments = models.CharField(max_length=150, blank=True)
+    correct_point = models.IntegerField(default=0)
     date_done = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
-        return f'child{Child.objects.get(id__exact=self.child_id)}'
-
+        return f'{self.child_nick} done the {self.work_title}'

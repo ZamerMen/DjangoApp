@@ -41,3 +41,9 @@ class AchievementCreate(View):
             new_obj = bound_form.save()
             return redirect('index_kidsachieve_url')
         return render(request, 'kidsachieve/achievement_create', context={'form': bound_form})
+
+class ChildAchievementsList(View):
+    def get(self, request, nick_name):
+        child = Child.objects.get(nick_name__iexact=nick_name)
+        works = AchieveList.objects.filter(child_nick=child.id)
+        return render(request, 'kidsachieve/child_achievements_list.html', context={'child': child, 'works': works})
