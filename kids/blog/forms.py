@@ -4,11 +4,7 @@ from django.core.exceptions import ValidationError
 
 
 class TagForm(forms.ModelForm):
-    # title = forms.CharField(max_length=50)
-    # title.widget.attrs.update({'class': 'form-control', 'placeholder': 'title'})
-    #
-    # slug = forms.CharField(max_length=50)
-    # slug.widget.attrs.update({'class': 'form-control', 'placeholder': 'slug'})
+
     class Meta:
         model = Tag
         fields = ['title', 'slug']
@@ -18,7 +14,6 @@ class TagForm(forms.ModelForm):
             'slug': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'slug'})
         }
 
-
     def clean_slug(self):
         new_slug = self.cleaned_data['slug'].lower()
         if new_slug == 'create':
@@ -27,11 +22,6 @@ class TagForm(forms.ModelForm):
             raise ValidationError(f'we alredy have {new_slug} as slug')
         return new_slug
 
-
-
-    # def save(self):
-    #     new_tag = Tag.objects.create(title=self.cleaned_data['title'], slug=self.cleaned_data['slug'])
-    #     return new_tag
 
 class PostForm(forms.ModelForm):
     class Meta:

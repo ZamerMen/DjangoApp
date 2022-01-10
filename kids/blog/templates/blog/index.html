@@ -5,16 +5,20 @@
     title page
 {% endblock %}
 
+{% block before_content %}
+    {% if user.is_authenticated %}
+        <h5 class="btn btn-light">
+               <a href=" {% url 'post_create_url' %}">PostCreate</a>
+
+
+               <a href="{% url 'tags_list_url' %}">Tags</a>
+           </h5>
+    {% endif %}
+{% endblock %}
 
 {% block content %}
-   <h5 class="btn btn-light">
-       <a href=" {% url 'post_create_url' %}">PostCreate</a>
 
-
-       <a href="{% url 'tags_list_url' %}">Tags</a>
-   </h5>
-
-    <h1>Today</h1>
+    <h1>Posts</h1>
 
     {% for post in posts %}
 

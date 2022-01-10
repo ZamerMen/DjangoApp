@@ -1,0 +1,15 @@
+{% extends 'kidsachieve/base_kidsachieve.html' %}
+
+{% block title %}
+Work detail
+{% endblock %}
+
+{% block content %}
+
+    {% for field in work %}
+        {{ field.title }}
+        {{ field.points }}
+        {{ field.comments }}
+    {% endfor %}
+
+{% endblock %}

@@ -1,4 +1,2 @@
-f = [1,2,3]
-a=f*1
-print(id(f) ,id(a))
-print(f ,a)
+a = [1,2,3,4]
+print(a[-2::-2])
