@@ -18,6 +18,7 @@ class PostCreate(LoginRequiredMixin, ObjectCreateMixin, View):
     template = 'blog/post_create_form.html'
     raise_exeption = True
 
+
 class PostUpdate(LoginRequiredMixin, ObjectUpdateMixin, View):
     model = Post
     model_form = PostForm

@@ -1,0 +1,34 @@
+{% extends 'kidsachieve/base_kidsachieve.html' %}
+
+{% block title %}
+Child info
+{% endblock %}
+
+{% block before_content %}
+    {% include 'kidsachieve/includes/cru_menu_kidsachieve.html' %}
+{% endblock %}
+
+{% block content %}
+
+    {% if user.is_authenticated and child.user == user %}
+        <p><h2> {{ child.first_name }} <h2/></p>
+        <p><h4> Nick name - {{ child.nick_name }}<h4/></p>
+        <p>Age - {{ child.age }}"</p>
+
+        <a href="{% url 'child_achievements_list_url' slug=child.slug %}">Achievements list <a/>
+
+
+            <br><br><br><br>
+        <p>
+            <a href="{{ child.get_update_url }}" class="btn btn-secondary">Edit child account</a>
+        </p>
+
+        <p>
+            <a href="{{ child.get_delete_url }}" class="btn btn-danger">Delete child account</a>
+        </p>
+
+    {% else %}
+        <p class="btn btn-danger"> User {{ user }} is not valid for this page <p/>
+    {% endif %}
+
+{% endblock %}

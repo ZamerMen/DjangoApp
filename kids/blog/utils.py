@@ -24,6 +24,11 @@ class ObjectCreateMixin:
     def post(self, request):
         bound_form = self.form(request.POST)
         if bound_form.is_valid():
+            if self.form==PostForm:
+                new_object = bound_form.save(commit=False)
+                new_object.user = request.user
+                new_object.save()
+                return redirect(new_object)
             new_object = bound_form.save()
             return redirect(new_object)
         return render(request, self.template, context={'form': bound_form})

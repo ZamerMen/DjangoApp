@@ -8,41 +8,71 @@
 
 
 {% block before_content %}
-    {% if user.is_authenticated %}
-
-        <p>
-            <a href="{% url 'child_create_url' %}">Child create</a>
-        </p>
-        <p>
-        <a href="{% url 'work_create_url' %}">Work create</a>
-        </p>
-        <p>
-        <a href="{% url 'achievement_create_url' %}">Achievement create</a>
-        </p>
-
-        <p>{{ current_user.id }}</p>
-
-    {% endif %}
+    {% include 'kidsachieve/includes/cru_menu_kidsachieve.html' %}
 {% endblock %}
 
 
 
 {% block content %}
 
-<h1> There are children: </h1>
+    {% if user.is_authenticated %}
 
-{% for child in children %}
-<a href="{% url 'child_achievements_list_url' slug=child.slug %}">
-<p> {{ child.first_name }} aka {{child.nick_name}} </p>
-</a>
-{% endfor %}
+        {% if children %}
+        <h2> Children: </h2>
+        {% else %}
+        <h2> Field 'Children' while is empty </h2>
+        {% endif %}
 
-<h1> There are works: </h1>
 
-{% for work in works %}
-<a href="{% url 'work_detail_url' slug=work.slug %}"
-<p> {{ work.title }} </p>
-{% endfor %}
+        {% for child in children %}
+        <a href="{% url 'child_detail_url' slug=child.slug %}">
+        <p> {{ child.first_name }} aka {{ child.nick_name }} parent is {{ child.user }} </p>
+        </a>
+        {% endfor %}
+
+
+<br><br>
+<h4> <a href="{% url 'works_list_url' %}">Works list for children</a> </h4>
+
+    {% endif %}
+
+
+{% endblock %}
+
+
+
+{% block table %}
+
+<style>
+    table {
+        border-collapse: collapse;
+        width: 100%;
+    }
+    th, td {
+        border: 1px solid black;
+
+    }
+</style>
+
+<h3>List of achievements of {{ user }}'s children (last five achievements)</h3>
+
+    <table>
+            <tr>
+                <td> data <td/>
+                <td> work <td/>
+                <td> comments <td/>
+
+            </tr>
+        {% for ach in ach_lst %}
+            <tr>
+                <td>{{ ach.date_done }}<td/>
+                <td>{{ ach.work_title }}<td/>
+                <td>({{ ach.child_nick }})<td/>
+
+            </tr>
+        {% endfor %}
+    </table>
+
 
 {% endblock %}
 

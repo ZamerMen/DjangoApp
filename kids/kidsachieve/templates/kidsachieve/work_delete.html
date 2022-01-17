@@ -1,0 +1,16 @@
+{% extends 'kidsachieve/base_kidsachieve.html' %}
+
+{% block title %}
+Delete work
+{% endblock %}
+
+{% block content %}
+
+<form action="{{ obj.get_delete_url }}" method="post">
+          {% csrf_token %}
+
+Are you sure to delete work - {{ obj }} ?
+    <br>
+<button type="submit" class="btn btn-danger">Delete Work</button>
+</form>
+{% endblock %}

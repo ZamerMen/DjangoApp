@@ -1,0 +1,20 @@
+{% extends 'kidsachieve/base_kidsachieve.html' %}
+
+{% block title %}
+Works list
+{% endblock %}
+
+{% block content %}
+
+        {% if works %}
+        <h2> Works for children: </h2>
+        {% else %}
+        <h2> Field 'Works' while is empty </h2>
+        {% endif %}
+
+
+        {% for work in works %}
+        <p><a href="{% url 'work_detail_url' slug=work.slug %}">{{ work.title }}</a></p>
+        {% endfor %}
+
+{% endblock %}

@@ -1,0 +1,17 @@
+{% if not user.is_authenticated %}
+    <a href="{% url 'register' %}">Register</a> and <a href="{% url 'login' %}">Log In</a> to access the full version of the site
+{% endif %}
+
+{% if user.is_authenticated %}
+
+        <p>
+            <a href="{% url 'child_create_url' %}">Create Child</a>
+        </p>
+        <p>
+        <a href="{% url 'work_create_url' %}">Create Work</a>
+        </p>
+        <p>
+        <a href="{% url 'achievement_create_url' %}">Create Achievement</a>
+        </p>
+
+{% endif %}

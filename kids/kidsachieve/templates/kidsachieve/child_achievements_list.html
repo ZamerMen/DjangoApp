@@ -6,7 +6,9 @@
 Achievements list of {{ child.first_name }}
 {% endblock %}
 
-
+{% block before_content %}
+    {% include 'kidsachieve/includes/cru_menu_kidsachieve.html' %}
+{% endblock %}
 
 {% block table %}
 
@@ -29,17 +31,37 @@ Achievements list of {{ child.first_name }}
                 <td> work <td/>
                 <td> comments <td/>
                 <td> points <td/>
-                <td> correct points <td/>
+                <td> benefit points <td/>
+                <td> action <td/>
             </tr>
-        {% for work in works %}
+        {% for ach in ach_lst %}
             <tr>
-                <td>{{ work.date_done }}<td/>
-                <td>{{ work.work_title}}<td/>
-                <td>({{ work.comments }})<td/>
-                <td>{{ work.work_title.points }}<td/>
-                <td>({{ work.correct_point }})<td/>
+
+                <td>{{ ach.date_done }}<td/>
+                <td>{{ ach.work_title }}<td/>
+                <td>({{ ach.comment }})<td/>
+                <td>{{ ach.work_title.point }}<td/>
+                <td>({{ ach.benefit_point }})<td/>
+                <td>
+                      <a href="{{ach.get_update_url}}">edit</a> /
+                      <a href="{{ach.get_delete_url}}">delete</a>
+
+                <td/>
+
             </tr>
+
         {% endfor %}
+
+                <tr>
+                    <td>  <td/>
+                    <td>  <td/>
+                    <td> Total: <td/>
+                    <td> {{ sum_work_points }} <td/>
+                    <td> {{ sum_ben_points }} <td/>
+                    <td> {{ total_sum }} <td/>
+                </tr>
     </table>
+
+
 
 {% endblock %}

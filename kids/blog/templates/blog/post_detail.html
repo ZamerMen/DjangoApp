@@ -7,11 +7,24 @@
 
 
 {% block content %}
+{% if user.is_authenticated %}
+        <h1 class='mt-5'>
+            {{ post.title }}
+        </h1>
 
-    <h1 class='mt-5'>
-        {{ post.title }}
-    </h1>
+        <h5>
+           Author - {{ post.user }}
+        </h5>
 
-<p> {{ post.body }} </p>
+    <p> {{ post.body }} </p>
+{% else %}
+<a href="{% url 'register' %}">Register</a> and <a href="{% url 'login' %}">Log In</a> to access the full version of the site
+{% endif %}
+
+
+{% if user.is_authenticated and user == post.user %}
+        <a href="{{ post.get_update_url }}" class="btn btn-secondary">Edit post</a>
+        <a href="{{ post.get_delete_url }}" class="btn btn-danger">Delete post</a>
+{% endif %}
 
 {% endblock %}

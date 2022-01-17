@@ -6,10 +6,25 @@ Work detail
 
 {% block content %}
 
-    {% for field in work %}
-        {{ field.title }}
-        {{ field.points }}
-        {{ field.comments }}
-    {% endfor %}
+    {% if user.is_authenticated and work.user == user %}
+        <p><h2> {{ work.title }} <h2/></p>
+        <p><h4> Points for work - {{ work.point }}<h4/></p>
+        <p>Coment:"{{ work.comment }}"</p>
+
+
+
+            <br><br><br><br>
+        <p>
+            <a href="{{ work.get_update_url }}" class="btn btn-secondary">Edit work</a>
+        </p>
+
+        <p>
+            <a href="{{ work.get_delete_url }}" class="btn btn-danger">Delete work</a>
+        </p>
+
+
+    {% else %}
+        <p class="btn btn-danger"> User {{ user }} is not valid for this page <p/>
+    {% endif %}
 
 {% endblock %}
