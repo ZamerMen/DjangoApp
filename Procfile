@@ -1,0 +1,1 @@
+web: pipenv run python kids/manage.py runserver $PORT
