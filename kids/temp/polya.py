@@ -1,1 +1,0 @@
-print((str('fuck hello /'.strip('/ fkcu'))))
